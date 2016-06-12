@@ -10,8 +10,7 @@ module.exports = {
     attributes: {
         tournamentID: {
             type: 'integer',
-            primaryKey: true,
-            autoIncrement: true
+            primaryKey: true
         },
         tournamentName: {
             type: 'string'

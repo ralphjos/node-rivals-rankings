@@ -8,22 +8,17 @@
 module.exports = {
 
     attributes: {
-        playerID: {
-            type: 'integer',
-            primaryKey: true,
-            autoIncrement: true
-        },
         challongeUsername: {
-            type: 'string'
+            type: 'string',
+            primaryKey: true
         },
         ratingMu: {
-            type: 'float'
+            type: 'float',
+            defaultsTo: 25.0
         },
         ratingSigma: {
-            type: 'float'
-        },
-        conservativeRating: {
-            type: 'float'
+            type: 'float',
+            defaultsTo: 25.0/3.0
         },
         regionID: {
             model: 'region'
@@ -32,11 +27,11 @@ module.exports = {
         // references
         matchWins: {
             collection: 'match',
-            via: 'winnerID'
+            via: 'winnerName'
         },
         matchLosses: {
             collection: 'match',
-            via: 'loserID'
+            via: 'loserName'
         }
     }
 };

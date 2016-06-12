@@ -19,23 +19,21 @@ module.exports = {
         round: {
             type: 'integer'
         },
-        winnerID: {
+        winnerName: {
             model: 'player'
         },
-        loserID: {
+        loserName: {
             model: 'player'
         },
         winnerScore: {
             type: 'integer'
         },
         loserScore: {
-            type: 'date'
+            type: 'integer'
         },
         date: {
             type: 'date'
         }
-        
-        
     }
 };
 
