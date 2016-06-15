@@ -77,86 +77,84 @@ module.exports = function (tournamentID) {
       // API Fetch Variable Setup
       var matches;
       var participants;
-      return fetch('https://api.challonge.com/v1/tournaments/' + tournamentID +
-            '.json?api_key=' + api_key +
-            '&include_matches=' + include_matches +
-            '&include_participants=' + include_participants)
-            .then(function (res) {
-                  return res.json();
-            }).then(function (singleTournament) {
-                  matches = singleTournament.tournament.matches;
-                  participants = singleTournament.tournament.participants;
-                  var playerIdToName = {};
+      var playerIdToName = {};
 
-                  Promise.map(participants, function (singleParticipant) {
-                        var playerId = singleParticipant.participant.id
-                        var playerName = singleParticipant.participant.challonge_username;
+      return Match.findOne({tournamentID: tournamentID}).then(function (match) {
+            if (!match) {
+                  return fetch('https://api.challonge.com/v1/tournaments/' + tournamentID +
+                        '.json?api_key=' + api_key +
+                        '&include_matches=' + include_matches +
+                        '&include_participants=' + include_participants)
+                        .then(function (res) {
+                              return res.json();
+                        }).then(function (singleTournament) {
+                              matches = singleTournament.tournament.matches;
+                              participants = singleTournament.tournament.participants;
 
-                        playerIdToName[playerId] = playerName;
+                              return Promise.map(participants, function (singleParticipant) {
+                                    var playerId = singleParticipant.participant.id;
+                                    var playerName = singleParticipant.participant.challonge_username;
 
-                        return {
-                              playerId: playerId,
-                              playerName: playerName,
-                              region: determineRegion(singleTournament.tournament.url)
-                        };
-                  }).then(function (participants) {
-                        return Promise.map(participants, function (participant) {
-                              var playerName = participant.playerName;
-                              var region = participant.region;
-                              return Player.findOne({challongeUsername: playerName}).then(function (err, record) {
-                                    if (err) {
-                                          return;
-                                    }
-                                    // If not existing, add matches to database
-                                    if (!record) {
-                                          Player.create({
-                                                challongeUsername: playerName,
-                                                regionName: region
-                                          }).then(function updateCB(err, updated) {
-                                                // log.info('Player "%s" Not Found In DB - Adding', playerName);
-                                          });
-                                    } else {
-                                          if (region != "national") {
-                                                Player.update({
-                                                      challongeUsername: playerName
-                                                }, {
+                                    playerIdToName[playerId] = playerName;
+
+                                    return {
+                                          playerId: playerId,
+                                          playerName: playerName,
+                                          region: determineRegion(singleTournament.tournament.url)
+                                    };
+                              })
+                        }).then(function (participants) {
+                              return Promise.map(participants, function (participant) {
+                                    var playerName = participant.playerName;
+                                    var region = participant.region;
+                                    return Player.findOne({challongeUsername: playerName}).then(function (record) {
+                                          if (!record) {
+                                                Player.create({
+                                                      challongeUsername: playerName,
                                                       regionName: region
-                                                }).then(function updateCB(err, updated) {
-                                                      // log.info('Updated player "%s" with region "%s"', playerName, region);
+                                                }).then(function (player) {
+                                                      log.info('Player "%s" Not Found In DB - Adding', playerName);
                                                 });
+                                          } else {
+                                                if (region != "national" && record.regionName != region) {
+                                                      Player.update({
+                                                            challongeUsername: playerName
+                                                      }, {
+                                                            regionName: region
+                                                      }).then(function (player) {
+                                                            log.info('Updated player "%s" with region "%s"', playerName, region);
+                                                      });
+                                                }
                                           }
-                                    }
+                                    });
                               });
-                        }).then(function () {
-                              return playerIdToName
-                        });
-                  }).then(function (playerIdToName) {
-                        return Promise.map(matches, function (matchItem) {
-                              var winnerId = matchItem.match.winner_id;
-                              var loserId = matchItem.match.loser_id;
-                              var round = matchItem.match.round;
-                              var date = new Date(matchItem.match.updated_at);
-                              var scores = parseScore(matchItem.match.scores_csv);
-                              var winnerName = playerIdToName[winnerId];
-                              var loserName = playerIdToName[loserId];
+                        }).then(function (playerIdToName) {
+                              return Promise.map(matches, function (matchItem) {
+                                    var winnerId = matchItem.match.winner_id;
+                                    var loserId = matchItem.match.loser_id;
+                                    var round = matchItem.match.round;
+                                    var date = new Date(matchItem.match.updated_at);
+                                    var scores = parseScore(matchItem.match.scores_csv);
+                                    var winnerName = playerIdToName[winnerId];
+                                    var loserName = playerIdToName[loserId];
 
 
-                              return Match.create({
-                                    tournamentID: tournamentID,
-                                    round: round,
-                                    winnerName: winnerName,
-                                    loserName: loserName,
-                                    winnerScore: scores.winnerScore,
-                                    loserScore: scores.loserScore,
-                                    date: date
-                              }).exec(function (err, created) {
-                                    if (err) {
-                                          log (winnerId, winnerName, loserId, loserName);
-                                          log (tournamentID, round, scores.winnerScore, scores.loserScore, date);
-                                    }
-                                    return created
+                                    return Match.create({
+                                          tournamentID: tournamentID,
+                                          round: round,
+                                          winnerName: winnerName,
+                                          loserName: loserName,
+                                          winnerScore: scores.winnerScore,
+                                          loserScore: scores.loserScore,
+                                          date: date
+                                    }).then(function (match) {
+                                          return match
+                                    });
                               });
                         });
-                  })
-            });
+            }
+
+            return [];
+      });
+
 };

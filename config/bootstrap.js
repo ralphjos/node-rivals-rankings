@@ -13,15 +13,18 @@ var Promise = require('bluebird');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
 
-module.exports.bootstrap = function(cb) {
-      
+module.exports.bootstrap = function (cb) {
+
       fetchTournamentData()
             .then(function (tournamentIDs) {
-                  return Promise.map(tournamentIDs, function(tournamentID) {
+                  return Promise.map(tournamentIDs, function (tournamentID) {
                         return fetchMatches(tournamentID);
-                  });
-            }).then(function(matches) {
-            log("done!");
+                  }).reduce(function (prev, cur) {
+                        return prev.concat(cur);
+                  }, []);
+            }).then(function (addedMatches) {
+            log("Done!");
       });
-  cb();
+
+      cb();
 };
