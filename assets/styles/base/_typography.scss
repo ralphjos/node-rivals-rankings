@@ -1,0 +1,198 @@
+// -----------------------------------------------------------------------------
+// This file contains everything related to typography.
+// -----------------------------------------------------------------------------
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/subset-HelveticaNeueLTStd-Lt.eot');
+  src: url('/fonts/subset-HelveticaNeueLTStd-Lt.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-HelveticaNeueLTStd-Lt.woff2') format('woff2'),
+    url('/fonts/subset-HelveticaNeueLTStd-Lt.woff') format('woff'),
+    url('/fonts/subset-HelveticaNeueLTStd-Lt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/subset-HelveticaNeueLTStd-It.eot');
+  src: url('/fonts/subset-HelveticaNeueLTStd-It.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-HelveticaNeueLTStd-It.woff2') format('woff2'),
+    url('/fonts/subset-HelveticaNeueLTStd-It.woff') format('woff'),
+    url('/fonts/subset-HelveticaNeueLTStd-It.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/subset-HelveticaNeueLTStd-Bd.eot');
+  src: url('/fonts/subset-HelveticaNeueLTStd-Bd.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-HelveticaNeueLTStd-Bd.woff2') format('woff2'),
+    url('/fonts/subset-HelveticaNeueLTStd-Bd.woff') format('woff'),
+    url('/fonts/subset-HelveticaNeueLTStd-Bd.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/subset-HelveticaNeueLTStd-LtIt.eot');
+  src: url('/fonts/subset-HelveticaNeueLTStd-LtIt.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-HelveticaNeueLTStd-LtIt.woff2') format('woff2'),
+    url('/fonts/subset-HelveticaNeueLTStd-LtIt.woff') format('woff'),
+    url('/fonts/subset-HelveticaNeueLTStd-LtIt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/subset-HelveticaNeueLTStd-Roman.eot');
+  src: url('/fonts/subset-HelveticaNeueLTStd-Roman.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/subset-HelveticaNeueLTStd-Roman.woff2') format('woff2'),
+    url('/fonts/subset-HelveticaNeueLTStd-Roman.woff') format('woff'),
+    url('/fonts/subset-HelveticaNeueLTStd-Roman.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BigNoodle';
+  src: url('/fonts/hinted-subset-BigNoodleTitling-Oblique.eot');
+  src: url('/fonts/hinted-subset-BigNoodleTitling-Oblique.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/hinted-subset-BigNoodleTitling-Oblique.woff2') format('woff2'),
+    url('/fonts/hinted-subset-BigNoodleTitling-Oblique.woff') format('woff'),
+    url('/fonts/hinted-subset-BigNoodleTitling-Oblique.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@mixin title-font {
+  //font-family: impact,sans-serif;
+  //.fonts-loaded & {
+    font-family: "BigNoodle", impact, sans-serif;
+  //}
+}
+
+@mixin body-font {
+  //font-family: Helvetica, arial, sans-serif;
+  //.fonts-loaded & {
+    font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
+  //}  
+}
+
+
+html {
+  font-size: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+$line-height: 1.5;
+
+body {
+  line-height: $line-height;
+  color: $body-color;
+  @include body-font;
+}
+
+/* 
+ * Modular scale
+ * http://www.modularscale.com/?1.15&&1.2&web&text
+*/
+
+$type-scale: (
+  hero: 3.75rem, // deviates from modular scale
+  h1: 2.385rem,
+  h2: 1.987rem,
+  h3: 1.656rem,
+  h4: 1.38rem,
+  p: 1.15rem,
+  small: 1rem // deviates from modular scale
+);
+
+/* 
+ * Modular scale
+ * http://www.modularscale.com/?1.15&&1.15&web&text
+*/
+
+$type-scale-tablet: (
+  hero: 3.4rem,
+  h1: 2.011rem,
+  h2: 1.749rem,
+  h3: 1.521em,
+  h4: 1.322rem,
+  p: 1.15rem, 
+  small: 1rem // deviates from modular scale
+);
+
+
+/* 
+ * Modular scale
+ * http://www.modularscale.com/?1.05&&1.15&web&text
+*/
+
+$type-scale-mobile: (
+  hero: 3.1rem,
+  h1: 1.762rem,
+  h2: 1.566rem,
+  h3: 1.389rem,
+  h4: 1.208rem,
+  p: 1.05rem,
+  small: 1rem // deviates from modular scale
+);
+
+
+$breakpoint-tablet: 85em;
+$breakpoint-middle: 65em;
+$breakpoint-mobile: 45em;
+
+@mixin size($level) {
+  font-size: map-get($type-scale, $level);
+  @media (max-width: $breakpoint-tablet) {
+     font-size: map-get($type-scale-tablet, $level);
+  }
+  @media (max-width: $breakpoint-mobile) {
+     font-size: map-get($type-scale-mobile, $level);
+  }
+}
+
+$whitespace: $line-height * map-get($type-scale, p);
+
+@mixin margin-bottom($level) {
+  margin-bottom: $whitespace * $level;
+  @media (max-width: $breakpoint-tablet) {
+     margin-bottom: $whitespace * $level * 0.8;
+  }
+  @media (max-width: $breakpoint-mobile) {
+     margin-bottom: $whitespace * $level * 0.66;
+  }
+}
+
+@mixin margin-top($level) {
+  margin-top: $whitespace * $level;
+  @media (max-width: $breakpoint-tablet) {
+     margin-top: $whitespace * $level * 0.8;
+  }
+  @media (max-width: $breakpoint-mobile) {
+     margin-top: $whitespace * $level * 0.66;
+  }
+}
+
+
+@mixin container($width: 50rem) {
+  margin: auto;
+  @include margin-top(1);
+  @include margin-bottom(1);
+  max-width: $width;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
