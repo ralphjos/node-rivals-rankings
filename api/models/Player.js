@@ -23,6 +23,9 @@ module.exports = {
         regionID: {
             model: 'region'
         },
+        lastMatchDate: {
+            type: 'date'
+        },
 
         // references
         matchWins: {
@@ -32,6 +35,10 @@ module.exports = {
         matchLosses: {
             collection: 'match',
             via: 'loserName'
+        },
+        ratingHistory: {
+            collection: 'ratingHistory',
+            via: 'challongeUsername'
         }
     }
 };

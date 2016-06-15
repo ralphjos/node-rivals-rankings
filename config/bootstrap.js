@@ -9,12 +9,19 @@
  * http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.bootstrap.html
  */
 var log = require('captains-log')();
-var http = require('http');
-var https = require('https');
+var Promise = require('bluebird');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
+var fetchMatches = require('./../tasks/fetchMatches.js');
 
 module.exports.bootstrap = function(cb) {
-
-   fetchTournamentData();
+      
+      fetchTournamentData()
+            .then(function (tournamentIDs) {
+                  return Promise.map(tournamentIDs, function(tournamentID) {
+                        return fetchMatches(tournamentID);
+                  });
+            }).then(function(matches) {
+            log("done!");
+      });
   cb();
 };
