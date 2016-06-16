@@ -23,7 +23,7 @@ module.exports = function () {
 
       // API Fetch Variable Setup
       const apiKey = sails.config.challonge.key;
-      const createdAfter = '2016-01-10';
+      const createdAfter = '2016-06-07';
       const state = 'ended';
 
       return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +

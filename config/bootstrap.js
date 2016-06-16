@@ -12,6 +12,7 @@ var log = require('captains-log')();
 var Promise = require('bluebird');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
+var runTrueSkill = require('./../tasks/runTrueSkill.js');
 
 module.exports.bootstrap = function (cb) {
 
@@ -23,8 +24,11 @@ module.exports.bootstrap = function (cb) {
                         return prev.concat(cur);
                   }, []);
             }).then(function (addedMatches) {
-            log("Done!");
+            return Promise.map(addedMatches, function (addedMatch) {
+                  runTrueSkill(addedMatch);
+            });
+      }).then(function () {
+            log("DONE!")
       });
-
       cb();
 };
