@@ -113,7 +113,7 @@ module.exports = function (tournamentID) {
                                                       challongeUsername: playerName,
                                                       regionName: region
                                                 }).then(function (player) {
-                                                      // log.info('Player "%s" Not Found In DB - Adding', playerName);
+                                                     
                                                 });
                                           } else {
                                                 if (region != "national" && record.regionName != region) {
@@ -122,7 +122,7 @@ module.exports = function (tournamentID) {
                                                       }, {
                                                             regionName: region
                                                       }).then(function (player) {
-                                                            // log.info('Updated player "%s" with region "%s"', playerName, region);
+                                                            
                                                       });
                                                 }
                                           }

@@ -7,7 +7,6 @@ var Promise = require('bluebird');
 var trueskill = require('trueskill')
 
 module.exports = function (match) {
-
       var winnerName = match.winnerName;
       var loserName = match.loserName;
 
@@ -44,9 +43,6 @@ module.exports = function (match) {
                         conservativeRating: result.winnerMu - 3 * result.winnerSigma
                   }
             ).then(function (winner) {
-                  if (winnerName === 'ralphjos') {
-                        log(result.winnerMu, result.winnerSigma, result.winnerMu - 3 * result.winnerSigma);
-                  }
                   return Player.update({challongeUsername: loserName},
                         {
                               ratingMu: result.loserMu,

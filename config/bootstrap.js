@@ -18,7 +18,7 @@ module.exports.bootstrap = function (cb) {
 
       fetchTournamentData()
             .then(function (tournamentIDs) {
-                  return Promise.map(tournamentIDs, fetchMatches)
+                  return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1})
                         .reduce(function (prev, cur) {
                               return prev.concat(cur);
                         }, []);
@@ -26,10 +26,10 @@ module.exports.bootstrap = function (cb) {
                   addedMatches.sort(function compare(match1, match2) {
                         return match1.date - match2.date;
                   });
-                  
+
                   return Promise.each(addedMatches, runTrueSkill);
             }).then(function () {
-                  log("DONE!")
+                  log("Done fetching data!")
             });
       cb();
 };
