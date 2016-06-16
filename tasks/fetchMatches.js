@@ -107,13 +107,13 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (participant) {
                                     var playerName = participant.playerName;
                                     var region = participant.region;
-                                    return Player.findOne({challongeUsername: playerName}).then(function (record) {
+                                    Player.findOne({challongeUsername: playerName}).then(function (record) {
                                           if (!record) {
                                                 Player.create({
                                                       challongeUsername: playerName,
                                                       regionName: region
                                                 }).then(function (player) {
-                                                      log.info('Player "%s" Not Found In DB - Adding', playerName);
+                                                      // log.info('Player "%s" Not Found In DB - Adding', playerName);
                                                 });
                                           } else {
                                                 if (region != "national" && record.regionName != region) {
@@ -122,13 +122,13 @@ module.exports = function (tournamentID) {
                                                       }, {
                                                             regionName: region
                                                       }).then(function (player) {
-                                                            log.info('Updated player "%s" with region "%s"', playerName, region);
+                                                            // log.info('Updated player "%s" with region "%s"', playerName, region);
                                                       });
                                                 }
                                           }
                                     });
                               });
-                        }).then(function (playerIdToName) {
+                        }).then(function () {
                               return Promise.map(matches, function (matchItem) {
                                     var winnerId = matchItem.match.winner_id;
                                     var loserId = matchItem.match.loser_id;

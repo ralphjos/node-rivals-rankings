@@ -20,6 +20,10 @@ module.exports = {
             type: 'float',
             defaultsTo: 25.0/3.0
         },
+        conservativeRating: {
+            type: 'float',
+            defaultsTo: 0.0
+        },
         regionID: {
             model: 'region'
         },

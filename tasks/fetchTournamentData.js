@@ -3,7 +3,6 @@
  */
 var log = require('captains-log')();
 var fetch = require('node-fetch');
-var fetchMatches = require('./fetchMatches.js');
 
 const WHITE_LIST = ["west", "wcs", "central", "ccs", "east", "ecs", "getgood", "national", "ncs"];
 
