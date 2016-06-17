@@ -1,0 +1,35 @@
+.rankings__main {
+  @include container(70rem);
+  
+  .title {
+    @include title-font;
+    @include size(hero);
+    @include margin-bottom(1);
+    display: inline-block;
+  }
+
+  .table-head-row {
+    td {
+      @include title-font;
+      @include size(h2);
+      text-transform: uppercase;
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+  }
+  tbody {
+    td {
+      @include size(p);
+      text-align: center;
+      padding: 1rem 0.5rem;
+    }
+    tr:nth-child(odd) td{
+      background-color: color($grey, 50);
+    }
+    tr:nth-child(even) td{
+      background-color: mix(white, color($theme-color, 50), 50%);
+    }
+  }
+}

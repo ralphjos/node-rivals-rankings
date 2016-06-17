@@ -6,6 +6,12 @@
  */
 
 module.exports = {
-	
+    getPlayers: function(req, res) {
+        Player.find()
+        .sort('conservativeRating DESC').exec(function(err, players) {
+            return res.view('national', {
+                players: players
+            })
+        })
+    } 
 };
-

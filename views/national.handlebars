@@ -1,0 +1,29 @@
+<section class="rankings__main">
+
+    <h1 class="title">National Rankings</h1>
+  
+    <table>
+      <thead>
+        <tr class="table-head-row">
+          <td>Rank</td>
+          <td>Name</td>
+          <td>Characters</td>
+          <td>Wins</td>
+          <td>Losses</td>
+          <td>Ratings</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each players}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{this.challongeUsername}}</td>
+            <td>TBD</td>
+            <td>{{this.matchWins.length}}</td>
+            <td>{{this.matchLosses.length}}</td>
+            <td>{{this.conservativeRating}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+</section>

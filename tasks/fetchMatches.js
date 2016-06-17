@@ -142,7 +142,6 @@ module.exports = function (tournamentID) {
                                     var winnerName = playerIdToName[winnerId];
                                     var loserName = playerIdToName[loserId];
 
-
                                     return Match.create({
                                           tournamentID: tournamentID,
                                           round: round,

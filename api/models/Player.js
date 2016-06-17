@@ -34,6 +34,14 @@ module.exports = {
         lastMatchDate: {
             type: 'date'
         },
+        matchWinsCount: {
+            type: 'integer',
+            defaultsTo: 0
+        },
+        matchLossesCount: {
+            type: 'integer',
+            defaultsTo: 0
+        },
 
         // references
         matchWins: {

@@ -34,7 +34,12 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
+
+  '/national': {
+    controller: 'PlayerController',
+    action: 'getPlayers'
+  },
 
   /***************************************************************************
   *                                                                          *

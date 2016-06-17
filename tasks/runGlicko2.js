@@ -41,7 +41,7 @@ module.exports = function (tournamentInfo) {
                               ratingMu: playerRating.getRating(),
                               ratingSigma: playerRating.getRd(),
                               ratingVol: playerRating.getVol(),
-                              conservativeRating: playerRating.getRating() - 2 * playerRating.getRd()
+                              conservativeRating: playerRating.getRating() - (1.75 * playerRating.getRd())
                         }
                   ).then(function (player) {
                         // updated
