@@ -24,8 +24,10 @@ module.exports = function () {
       const apiKey = sails.config.challonge.key;
       const state = 'ended';
       const subdomain = 'narivals';
+      const createdAfter = '2016-02-01';
 
       return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +
+            '&created_after=' + createdAfter +
             '&subdomain=' + subdomain +
             '&state=' + state)
             .then(function (res) {
@@ -56,12 +58,17 @@ module.exports = function () {
                         }
                   });
 
+
                   return Tournament.findOrCreate(findCriteria, recordsToCreate).then(function (tournaments) {
                         return tournaments;
                   });
             }).then(function (tournaments) {
+                  tournaments.sort(function (tournament1, tournament2) {
+                        return tournament1.date - tournament2.date;
+                  });
+
                   return tournaments.map(function (tournament) {
-                        return tournament.tournamentID
+                        return tournament.tournamentID;
                   });
             });
 };

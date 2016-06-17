@@ -14,11 +14,15 @@ module.exports = {
         },
         ratingMu: {
             type: 'float',
-            defaultsTo: 25.0
+            defaultsTo: 1500
         },
         ratingSigma: {
             type: 'float',
-            defaultsTo: 25.0/3.0
+            defaultsTo: 200
+        },
+        ratingVol: {
+            type: 'float',
+            defaultsTo: 0.06
         },
         conservativeRating: {
             type: 'float',

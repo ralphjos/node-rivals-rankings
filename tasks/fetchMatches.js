@@ -79,6 +79,9 @@ module.exports = function (tournamentID) {
       var participants;
       var playerIdToName = {};
 
+      var playerNames = new Set();
+      var matchResults = [];
+
       return Match.findOne({tournamentID: tournamentID}).then(function (match) {
             if (!match) {
                   return fetch('https://api.challonge.com/v1/tournaments/' + tournamentID +
@@ -107,13 +110,14 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (participant) {
                                     var playerName = participant.playerName;
                                     var region = participant.region;
+                                    playerNames.add(playerName);
                                     Player.findOne({challongeUsername: playerName}).then(function (record) {
                                           if (!record) {
                                                 Player.create({
                                                       challongeUsername: playerName,
                                                       regionName: region
                                                 }).then(function (player) {
-                                                     
+
                                                 });
                                           } else {
                                                 if (region != "national" && record.regionName != region) {
@@ -122,7 +126,7 @@ module.exports = function (tournamentID) {
                                                       }, {
                                                             regionName: region
                                                       }).then(function (player) {
-                                                            
+
                                                       });
                                                 }
                                           }
@@ -148,13 +152,21 @@ module.exports = function (tournamentID) {
                                           loserScore: scores.loserScore,
                                           date: date
                                     }).then(function (match) {
-                                          return match
+                                          matchResults.push(match);
                                     });
                               });
+                        }).then(function () {
+                              return {
+                                    playerNames: playerNames,
+                                    matchResults: matchResults
+                              }
                         });
             }
 
-            return [];
+            return {
+                  playerNames: new Set(),
+                  matchResults: []
+            };
       });
 
 };

@@ -12,22 +12,15 @@ var log = require('captains-log')();
 var Promise = require('bluebird');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
-var runTrueSkill = require('./../tasks/runTrueSkill.js');
+var runGlicko2 = require('./../tasks/runGlicko2.js');
 
 module.exports.bootstrap = function (cb) {
 
       fetchTournamentData()
             .then(function (tournamentIDs) {
-                  return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1})
-                        .reduce(function (prev, cur) {
-                              return prev.concat(cur);
-                        }, []);
-            }).then(function (addedMatches) {
-                  addedMatches.sort(function compare(match1, match2) {
-                        return match1.date - match2.date;
-                  });
-
-                  return Promise.each(addedMatches, runTrueSkill);
+                  return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1});
+            }).then(function (tournamentInfos) {
+                  return Promise.each(tournamentInfos, runGlicko2);
             }).then(function () {
                   log("Done fetching data!")
             });
