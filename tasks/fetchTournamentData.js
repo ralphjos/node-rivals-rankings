@@ -22,11 +22,11 @@ module.exports = function () {
 
       // API Fetch Variable Setup
       const apiKey = sails.config.challonge.key;
-      const createdAfter = '2016-01-10';
       const state = 'ended';
+      const subdomain = 'narivals';
 
       return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +
-            '&created_after=' + createdAfter +
+            '&subdomain=' + subdomain +
             '&state=' + state)
             .then(function (res) {
                   return res.json();
