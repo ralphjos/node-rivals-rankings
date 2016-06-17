@@ -44,7 +44,7 @@ module.exports = function () {
             .then(function (rankedTournaments) {
                   var findCriteria = rankedTournaments.map(function (rankedTournament) {
                         return {
-                              tournamentId: rankedTournament.tournament.id
+                              tournamentID: rankedTournament.tournament.id
                         }
                   });
 
