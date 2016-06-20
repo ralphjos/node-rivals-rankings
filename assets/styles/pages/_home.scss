@@ -40,7 +40,7 @@
 .home__introduction {
   @include section--home;
   background-image: url("/images/splash2.png");
-  background-size: fit;
+  background-size: cover;
   background-position: left top;
   color: white;
   padding-left: 15%;
