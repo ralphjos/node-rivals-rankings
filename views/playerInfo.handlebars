@@ -1,0 +1,95 @@
+<section class="player__main">
+
+  <div class="container">
+      <h2 class="subtitle">Player Profile</h2>
+      <h1 class="title">{{ player.challongeUsername }}</h1>
+    
+      <table>
+          <tr class="info-row first">
+            <td>
+              Region:
+            </td>
+            <td>
+               {{ capitalize player.region }}
+            </td>
+          </tr>
+
+          <tr class="info-row">
+            <td>
+              Rating:
+            </td>
+            <td>
+              {{round player.conservativeRating }}
+            </td>
+          </tr>
+
+          <tr class="info-row">
+            <td>
+              Match Wins:
+            </td>
+            <td>
+              {{ player.matchWinsCount }}
+            </td>
+          </tr>
+
+          <tr class="info-row">
+            <td>
+             Match Losses:
+            </td>
+            <td>
+            {{ player.matchLossesCount }}
+            </td>
+          </tr>
+
+          <tr class="info-row">
+            <td>
+              Win Percent:
+            </td>
+            <td>
+            {{divide (round (multiply 10 player.winPercentage)) 10 }}%
+            </td>
+          </tr>
+      </table>
+
+      <h3 class="match-history">Match History</h3>
+
+      {{#each player.allMatches}}
+        <div class="match">
+          <small class="date">{{moment this.date format="MMMM DD, YYYY"}}</small>
+          <h1 class="tournament">{{this.tournamentID}}</h1>
+          <h2 class="round">
+          {{#lt this.round 0}}
+            Losers Round {{multiply this.round -1}}
+          {{else}}
+            Winners Round {{this.round}}
+          {{/lt}}
+          </h2>
+          <table class="match-table">
+            <tr>
+              <td class="winner {{#is this.winnerName ../player.challongeUsername}}active{{/is}}">
+                {{#isnt this.winnerName ../player.challongeUsername}}<a href="/players/{{this.winnerName}}/">{{this.winnerName}}{{else}}{{this.winnerName}}{{/isnt}}
+              </td>
+              <td class="vs">
+                VS
+              </td>
+              <td class="loser {{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">
+                {{#isnt this.loserName ../player.challongeUsername}}<a href="/players/{{this.loserName}}/">{{this.loserName}}{{else}}{{this.loserName}}{{/isnt}}
+              </td>
+            </tr>
+            <tr>
+              <td class="winner-score">
+                {{this.winnerScore}}
+              </td>
+              <td class="score-dash">
+                -
+              </td>
+              <td class="loser-score">
+                {{this.loserScore}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      {{/each}}
+    </div>
+</section>
+

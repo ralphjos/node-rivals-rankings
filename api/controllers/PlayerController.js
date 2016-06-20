@@ -14,7 +14,8 @@ module.exports = {
         if (region === 'national') {
             return Player.find().sort('conservativeRating DESC').exec(function(err, players) {
                 return res.view('leaderboard', {
-                   players: players
+                   players: players,
+                   region: region
                 });
             });
         }
@@ -23,7 +24,10 @@ module.exports = {
 
         return Region.findOne(criteria)
         .populate('players', {sort: 'conservativeRating DESC'}).exec(function(err, players) {
-            return res.view('leaderboard', players)
+            return res.view('leaderboard', {
+                players: players.players,
+                region: region
+            });
         })
     },
 
@@ -36,14 +40,12 @@ module.exports = {
               .exec(function(err, player) {
                   var allMatches = player.matchWins.concat(player.matchLosses);
                   allMatches.sort(function (match1, match2) {
-                      return match1.date - match2.date;
+                      return match2.date - match1.date;
                   });
 
                   player['allMatches'] = allMatches;
-
-                  log(player);
-
-                  // return res.view('playerInfo', {player: player});
+                  log (player);
+                  return res.view('playerInfo', {player: player});
               });
     }
 };

@@ -1,6 +1,6 @@
 <section class="rankings__main">
 
-    <h1 class="title">National Rankings</h1>
+    <h1 class="title">{{region}} Rankings</h1>
   
     <table>
       <thead>
@@ -18,7 +18,7 @@
         {{#each players}}
           <tr>
             <td>{{add @index 1}}</td>
-            <td>{{this.challongeUsername}}</td>
+            <td><a href="/players/{{this.challongeUsername}}/">{{this.challongeUsername}}</a></td>
             <td>TBD</td>
             <td>{{this.matchWinsCount}}</td>
             <td>{{this.matchLossesCount}}</td>
