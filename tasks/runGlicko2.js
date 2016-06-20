@@ -44,14 +44,17 @@ module.exports = function (tournamentInfo) {
       }).then(function () {
             return Promise.map(allPlayers, function (playerName) {
                   var playerRating = playerRatings[playerName];
+				  var winCount = playerWinsCount[playerName];
+				  var lossCount = playerLossesCount[playerName];
                   return Player.update({challongeUsername: playerName},
                         {
                               ratingMu: playerRating.getRating(),
                               ratingSigma: playerRating.getRd(),
                               ratingVol: playerRating.getVol(),
                               conservativeRating: playerRating.getRating() - (1.75 * playerRating.getRd()),
-                              matchWinsCount: playerWinsCount[playerName],
-                              matchLossesCount: playerLossesCount[playerName]
+                              matchWinsCount: winCount,
+                              matchLossesCount: lossCount,
+                              winPercentage: 100 * (winCount / (winCount + lossCount))
                         }
                   ).then(function (player) {
 
