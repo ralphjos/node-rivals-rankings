@@ -16,12 +16,12 @@
       <tbody>
         {{#each players}}
           <tr>
-            <td>{{@index}}</td>
+            <td>{{add @index 1}}</td>
             <td>{{this.challongeUsername}}</td>
             <td>TBD</td>
-            <td>{{this.matchWins.length}}</td>
-            <td>{{this.matchLosses.length}}</td>
-            <td>{{this.conservativeRating}}</td>
+            <td>{{this.matchWinsCount}}</td>
+            <td>{{this.matchLossesCount}}</td>
+            <td>{{round this.conservativeRating}}</td>
           </tr>
         {{/each}}
       </tbody>
