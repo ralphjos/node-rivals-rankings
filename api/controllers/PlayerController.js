@@ -5,37 +5,45 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+var log = require('captains-log')();
+
 module.exports = {
-    national: function(req, res) {
-        Player.find()
-        .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('leaderboard', {
-                players: players
-            })
+    getRankings: function(req, res) {
+        var region = req.param('region', 'national');
+
+        if (region === 'national') {
+            return Player.find().sort('conservativeRating DESC').exec(function(err, players) {
+                return res.view('leaderboard', {
+                   players: players
+                });
+            });
+        }
+
+        var criteria = {name: region};
+
+        return Region.findOne(criteria)
+        .populate('players', {sort: 'conservativeRating DESC'}).exec(function(err, players) {
+            return res.view('leaderboard', players)
         })
     },
-    western: function(req, res) {
-        Player.find()
-        .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('leaderboard', {
-                players: players
-            })
-        })
-    },
-    central: function(req, res) {
-        Player.find()
-        .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('leaderboard', {
-                players: players
-            })
-        })
-    },
-    eastern: function(req, res) {
-        Player.find()
-        .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('leaderboard', {
-                players: players
-            })
-        })
-    },
+
+    getPlayer: function(req, res) {
+        var name = req.param('name');
+
+        return Player.findOne({challongeUsername: name})
+              .populate('matchWins')
+              .populate('matchLosses')
+              .exec(function(err, player) {
+                  var allMatches = player.matchWins.concat(player.matchLosses);
+                  allMatches.sort(function (match1, match2) {
+                      return match1.date - match2.date;
+                  });
+
+                  player['allMatches'] = allMatches;
+
+                  log(player);
+
+                  // return res.view('playerInfo', {player: player});
+              });
+    }
 };

@@ -36,25 +36,15 @@ module.exports.routes = {
     view: 'homepage'
   },
 
-  '/rankings/national': {
+  '/rankings/:region': {
     controller: 'PlayerController',
-    action: 'national'
+    action: 'getRankings'
   },
-
-  '/rankings/western': {
+  
+  '/players/:name': {
     controller: 'PlayerController',
-    action: 'western'
-  },
-
-  '/rankings/central': {
-    controller: 'PlayerController',
-    action: 'central'
-  },
-
-  '/rankings/eastern': {
-    controller: 'PlayerController',
-    action: 'eastern'
-  },
+    action: 'getPlayer'
+  }
 
   /***************************************************************************
   *                                                                          *
