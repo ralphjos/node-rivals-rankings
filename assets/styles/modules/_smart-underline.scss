@@ -30,32 +30,8 @@
   background-position: 0% $percent;
 }
 
-@mixin text-underline-hover($color, $percent: 93%, $width: 1px) {
-  &:hover, &:active, &:focus {
-    background-image: linear-gradient($color, $color);
-    background-size: 1px $width;
-    background-repeat: repeat-x;
-    background-position: 0% $percent;
-  }
-}
-
 
 @mixin link-underline($background, $color, $percent: 93%, $width: 1px) {
-  @include text-underline-crop($background);
-  @include text-underline($color, $percent, $width);
-
-  text-decoration: none;
-
-  *,
-  *:after,
-  &:after,
-  *:before,
-  &:before {
-    text-shadow: none;
-  }
-}
-
-@mixin link-underline-hover($background, $color, $percent: 93%, $width: 1px) {
   @include text-underline-crop($background);
   @include text-underline($color, $percent, $width);
 

@@ -2,11 +2,16 @@
   @include margin-top(2);
   background-color: color($grey, 200);
   border-top: 1px solid color($grey, 300);
-  padding: $whitespace / 2;
+  padding: $whitespace / 1.5;
   
       small {
+        @include size(small);
         display: block;
         text-align: center;
         color: color($grey, 500);
       }
+
+          a {
+            @include link-underline(color($grey,200), color($grey,500), 100%);
+          }
 }

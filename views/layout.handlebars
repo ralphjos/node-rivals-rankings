@@ -9,6 +9,7 @@
         <!--[if lt IE 9]>
           <script src="/js/polyfill/html5-shiv.js"></script>
         <![endif]-->
+        <script defer src="/js/responsive-nav.js"></script>
 
         <!--STYLES-->
         <link rel="stylesheet" href="/styles/importer.css">
@@ -20,23 +21,29 @@
 
 
 
-
-        <nav class="global-nav">
+        <nav id="global-nav--mobile">
             <ul>
-              <li class="logo"><img src="/images/logo.png"></li>
-              <li>National</li>
-              <li>Western</li>
-              <li>Central</li>
-              <li>Eastern</li>
+              <li class="logo"><a href="/"><img src="/images/logo.png"></li></a>
+              <li class="link" id="global-nav--toggle"><a href="#">Test</a></li>
             </ul>
         </nav>
 
+        <nav class="global-nav">
+            <ul>
+              <li class="logo"><a href="/"><img src="/images/logo.png"></li></a>
+              <li class="link"><a href="/rankings/national/">National</a></li>
+              <li class="link"><a href="/rankings/western/">Western</a></li>
+              <li class="link"><a href="/rankings/central/">Central</a></li>
+              <li class="link"><a href="/rankings/eastern/">Eastern</a></li>
+            </ul>
+        </nav>
+        
 
         {{{ body }}}
 
 
         <footer class="global-footer">
-            <small>Crafted with love by Kenneth and Ralph</small>
+            <small>Crafted with love by <a href="http://www.kendevdesigns.com">Kenneth</a> and <a href="https://github.com/ralphjos">Ralph</a>&ensp;|&ensp;View on <a href="https://github.com/ralphjos/node-rivals-rankings">GitHub</a></small>
         </footer>
 
 
