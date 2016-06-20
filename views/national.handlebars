@@ -10,6 +10,7 @@
           <td>Characters</td>
           <td>Wins</td>
           <td>Losses</td>
+          <td>Win Percent</td>
           <td>Ratings</td>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
             <td>TBD</td>
             <td>{{this.matchWinsCount}}</td>
             <td>{{this.matchLossesCount}}</td>
+            <td>{{divide (round (multiply 10 this.winPercentage)) 10 }}%</td>
             <td>{{round this.conservativeRating}}</td>
           </tr>
         {{/each}}
