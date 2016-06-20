@@ -42,6 +42,10 @@ module.exports = {
             type: 'integer',
             defaultsTo: 0
         },
+        winPercentage: {
+            type: 'float',
+            defaultsTo: 0
+        },
 
         // references
         matchWins: {

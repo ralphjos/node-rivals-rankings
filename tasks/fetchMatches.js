@@ -97,40 +97,44 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (singleParticipant) {
                                     var playerId = singleParticipant.participant.id;
                                     var playerName = singleParticipant.participant.challonge_username;
+                                    var finalRank = singleParticipant.participant.final_rank;
 
                                     playerIdToName[playerId] = playerName;
 
                                     return {
                                           playerId: playerId,
                                           playerName: playerName,
-                                          region: determineRegion(singleTournament.tournament.url)
+                                          region: determineRegion(singleTournament.tournament.url),
+                                          finalRank: finalRank
                                     };
                               })
                         }).then(function (participants) {
                               return Promise.map(participants, function (participant) {
-                                    var playerName = participant.playerName;
-                                    var region = participant.region;
-                                    playerNames.add(playerName);
-                                    Player.findOne({challongeUsername: playerName}).then(function (record) {
-                                          if (!record) {
-                                                Player.create({
-                                                      challongeUsername: playerName,
-                                                      regionName: region
-                                                }).then(function (player) {
-
-                                                });
-                                          } else {
-                                                if (region != "national" && record.regionName != region) {
-                                                      Player.update({
-                                                            challongeUsername: playerName
-                                                      }, {
+                                    if (participant.finalRank) {
+                                          var playerName = participant.playerName;
+                                          var region = participant.region;
+                                          playerNames.add(playerName);
+                                          Player.findOne({challongeUsername: playerName}).then(function (record) {
+                                                if (!record) {
+                                                      Player.create({
+                                                            challongeUsername: playerName,
                                                             regionName: region
                                                       }).then(function (player) {
 
                                                       });
+                                                } else {
+                                                      if (region != "national" && record.regionName != region) {
+                                                            Player.update({
+                                                                  challongeUsername: playerName
+                                                            }, {
+                                                                  regionName: region
+                                                            }).then(function (player) {
+
+                                                            });
+                                                      }
                                                 }
-                                          }
-                                    });
+                                          });
+                                    }
                               });
                         }).then(function () {
                               return Promise.map(matches, function (matchItem) {
