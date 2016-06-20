@@ -9,7 +9,7 @@ module.exports = {
     national: function(req, res) {
         Player.find()
         .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('national', {
+            return res.view('leaderboard', {
                 players: players
             })
         })
@@ -17,7 +17,7 @@ module.exports = {
     western: function(req, res) {
         Player.find()
         .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('western', {
+            return res.view('leaderboard', {
                 players: players
             })
         })
@@ -25,7 +25,7 @@ module.exports = {
     central: function(req, res) {
         Player.find()
         .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('central', {
+            return res.view('leaderboard', {
                 players: players
             })
         })
@@ -33,7 +33,7 @@ module.exports = {
     eastern: function(req, res) {
         Player.find()
         .sort('conservativeRating DESC').exec(function(err, players) {
-            return res.view('eastern', {
+            return res.view('leaderboard', {
                 players: players
             })
         })
