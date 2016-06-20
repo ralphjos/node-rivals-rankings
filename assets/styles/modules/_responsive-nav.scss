@@ -34,10 +34,15 @@
   display: block;
   background: #C115EC url("../images/hamburger.gif") no-repeat 50% 33%;
   position: relative;
-  bottom: 0.3rem;
+  bottom: 0.66rem;
 }
 
-@media (max-width: $breakpoint-mobile + 10em) {
+#global-nav--mobile {
+  display: none;
+}
+
+
+@media (max-width: $breakpoint-mobile + 6em) {
   .global-nav.global-nav {
       ul {
         padding: 0;
@@ -54,20 +59,22 @@
         text-align: center;
         border-top: 1px solid color($grey, 300);
       }
-
-  }
-}
-
-
-@media screen and (min-width: $breakpoint-mobile + 10em) {
-  .js .nav-collapse {
-    position: relative;
-  }
-  .js .nav-collapse.closed {
-    max-height: none;
   }
 
   #global-nav--mobile {
-    display: none;
+    display: block;
   }
+
+}
+
+
+@media screen and (min-width: $breakpoint-mobile + 6.0001em) {
+   .js .nav-collapse {
+    position: relative;
+  }
+
+  .js .nav-collapse.closed {
+    max-height: none;
+  } 
+
 }
