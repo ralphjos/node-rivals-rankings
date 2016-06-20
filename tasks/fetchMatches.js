@@ -112,22 +112,22 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (participant) {
                                     if (participant.finalRank) {
                                           var playerName = participant.playerName;
-                                          var region = participant.region;
+                                          var regionName = participant.region;
                                           playerNames.add(playerName);
                                           Player.findOne({challongeUsername: playerName}).then(function (record) {
                                                 if (!record) {
                                                       Player.create({
                                                             challongeUsername: playerName,
-                                                            regionName: region
+                                                            region: regionName
                                                       }).then(function (player) {
 
                                                       });
                                                 } else {
-                                                      if (region != "national" && record.regionName != region) {
+                                                      if (regionName != "national" && record.region != regionName) {
                                                             Player.update({
                                                                   challongeUsername: playerName
                                                             }, {
-                                                                  regionName: region
+                                                                  region: regionName
                                                             }).then(function (player) {
 
                                                             });

@@ -8,23 +8,19 @@
 module.exports = {
 
     attributes: {
-        regionID: {
-            type: 'integer',
-            primaryKey: true,
-            autoIncrement: true
-        },
-        regionName: {
-            type: 'string'
+        name: {
+            type: 'string',
+            primaryKey: true
         },
 
         // references
         tournaments: {
             collection: 'tournament',
-            via: 'regionID'
+            via: 'region'
         },
         players: {
             collection: 'player',
-            via: 'regionID'
+            via: 'region'
         }
     }
 };

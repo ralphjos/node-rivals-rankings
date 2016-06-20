@@ -28,7 +28,7 @@ module.exports = {
             type: 'float',
             defaultsTo: 0.0
         },
-        regionID: {
+        region: {
             model: 'region'
         },
         lastMatchDate: {

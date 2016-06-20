@@ -15,7 +15,7 @@ module.exports = {
         tournamentName: {
             type: 'string'
         },
-        regionID: {
+        region: {
             model: 'region'
         },
         date: {

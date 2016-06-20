@@ -10,13 +10,15 @@
  */
 var log = require('captains-log')();
 var Promise = require('bluebird');
+var setRegions = require('./../tasks/setRegions.js');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
 var runGlicko2 = require('./../tasks/runGlicko2.js');
 
 module.exports.bootstrap = function (cb) {
 
-      fetchTournamentData()
+      setRegions()
+            .then(fetchTournamentData)
             .then(function (tournamentIDs) {
                   return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1});
             }).then(function (tournamentInfos) {
