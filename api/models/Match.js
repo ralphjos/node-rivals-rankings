@@ -16,6 +16,12 @@ module.exports = {
         tournamentID: {
             model: 'tournament'
         },
+        tournamentURL: {
+            type: 'string'
+        },
+        tournamentName: {
+            type: 'string'
+        },
         round: {
             type: 'integer'
         },

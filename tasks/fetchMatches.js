@@ -70,15 +70,17 @@ module.exports = function (tournamentID) {
             return scores;
       }
 
+      // API Fetch Variable Setup
       const api_key = sails.config.challonge.key;
       const include_matches = 1;
       const include_participants = 1;
 
-      // API Fetch Variable Setup
       var matches;
       var participants;
-      var playerIdToName = {};
+      var tournamentName;
+      var tournamentURL;
 
+      var playerIdToName = {};
       var playerNames = new Set();
       var matchResults = [];
 
@@ -93,6 +95,8 @@ module.exports = function (tournamentID) {
                         }).then(function (singleTournament) {
                               matches = singleTournament.tournament.matches;
                               participants = singleTournament.tournament.participants;
+                              tournamentName = singleTournament.tournament.name;
+                              tournamentURL = singleTournament.tournament.full_challonge_url;
 
                               return Promise.map(participants, function (singleParticipant) {
                                     var playerId = singleParticipant.participant.id;
@@ -148,6 +152,8 @@ module.exports = function (tournamentID) {
 
                                     return Match.create({
                                           tournamentID: tournamentID,
+                                          tournamentName: tournamentName,
+                                          tournamentURL: tournamentURL,
                                           round: round,
                                           winnerName: winnerName,
                                           loserName: loserName,
