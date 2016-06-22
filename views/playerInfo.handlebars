@@ -56,7 +56,7 @@
       {{#each player.allMatches}}
         <div class="match">
           <small class="date">{{moment this.date format="MMMM DD, YYYY"}}</small>
-          <h1 class="tournament">{{this.tournamentID}}</h1>
+          <a href="{{this.tournamentURL}}"><h1 class="tournament">{{this.tournamentName}}</h1></a>
           <h2 class="round">
           {{#lt this.round 0}}
             Losers Round {{multiply this.round -1}}
@@ -67,13 +67,13 @@
           <table class="match-table">
             <tr>
               <td class="winner {{#is this.winnerName ../player.challongeUsername}}active{{/is}}">
-                {{#isnt this.winnerName ../player.challongeUsername}}<a href="/players/{{this.winnerName}}/">{{this.winnerName}}{{else}}{{this.winnerName}}{{/isnt}}
+                {{#isnt this.winnerName ../player.challongeUsername}}<a href="/players/{{this.winnerName}}/">{{this.winnerName}}</a>{{else}}{{this.winnerName}}{{/isnt}}
               </td>
               <td class="vs">
                 VS
               </td>
               <td class="loser {{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">
-                {{#isnt this.loserName ../player.challongeUsername}}<a href="/players/{{this.loserName}}/">{{this.loserName}}{{else}}{{this.loserName}}{{/isnt}}
+                {{#isnt this.loserName ../player.challongeUsername}}<a href="/players/{{this.loserName}}/">{{this.loserName}}</a>{{else}}{{this.loserName}}{{/isnt}}
               </td>
             </tr>
             <tr>
