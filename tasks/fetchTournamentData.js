@@ -54,6 +54,7 @@ module.exports = function () {
                         return {
                               tournamentID: rankedTournament.tournament.id,
                               tournamentName: rankedTournament.tournament.name,
+                              url: rankedTournament.tournament.full_challonge_url,
                               date: rankedTournament.tournament.started_at
                         }
                   });

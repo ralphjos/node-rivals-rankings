@@ -18,6 +18,9 @@ module.exports = {
         region: {
             model: 'region'
         },
+        url: {
+            type: 'string'
+        },
         date: {
             type: 'date'
         },
