@@ -20,20 +20,55 @@
       <tbody>
         {{#each players}}
           <tr>
-            <td>{{add @index 1}}</td>
-            <td><a href="/players/{{this.challongeUsername}}/">{{this.challongeUsername}}</a></td>
+            <td class="rank">{{add @index 1}}</td>
+            <td class="player"><a href="/players/{{this.challongeUsername}}/">
+              {{#gt (length this.alias) 0}}
+                {{this.alias}}
+              {{else}}
+                {{this.challongeUsername}} 
+              {{/gt}}</a>
+            </td>
+
             {{#is ../region "national"}}
               {{#is this.region "national"}}
-                <td>Unknown</td>
+                <td class="region">Unknown</td>
               {{else}}
-                <td>{{capitalize this.region}}</td>
+                <td class="region">{{capitalize this.region}}</td>
               {{/is}}
             {{/is}}
-            <td>TBD</td>
-            <td>{{this.matchWinsCount}}</td>
-            <td>{{this.matchLossesCount}}</td>
-            <td>{{divide (round (multiply 10 this.winPercentage)) 10 }}%</td>
-            <td>{{round this.conservativeRating}}</td>
+            <td>
+              {{#inArray this.mains "Zetterburn"}}
+                <img class="rival-icon" src="/images/icon_zetterburn.png">
+              {{/inArray}}
+              {{#inArray this.mains "Forsburn"}}
+                <img class="rival-icon" src="/images/icon_forsburn.png">
+              {{/inArray}}
+              {{#inArray this.mains "Maypul"}}
+                <img class="rival-icon" src="/images/icon_maypul.png">
+              {{/inArray}}
+              {{#inArray this.mains "Kragg"}}
+                <img class="rival-icon" src="/images/icon_kragg.png">
+              {{/inArray}}
+              {{#inArray this.mains "Kraig"}}
+                <img class="rival-icon" src="/images/icon_kraig.png">
+              {{/inArray}}
+              {{#inArray this.mains "Wrastor"}}
+                <img class="rival-icon" src="/images/icon_wrastor.png">
+              {{/inArray}}
+              {{#inArray this.mains "Absa"}}
+                <img class="rival-icon" src="/images/icon_absa.png">
+              {{/inArray}}
+              {{#inArray this.mains "Orcane"}}
+                <img class="rival-icon" src="/images/icon_orcane.png">
+              {{/inArray}}
+              {{#inArray this.mains "Etalus"}}
+                <img class="rival-icon" src="/images/icon_etalus.png">
+              {{/inArray}}
+            </td>
+            <td class="wins">{{this.matchWinsCount}}</td>
+            <td class="losses">{{this.matchLossesCount}}</td>
+            <td class="percent">{{divide (round (multiply 10 this.winPercentage)) 10 }}%</td>
+            <td class="ratings">{{round this.conservativeRating}}</td>
           </tr>
         {{/each}}
       </tbody>

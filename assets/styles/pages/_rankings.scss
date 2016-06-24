@@ -31,5 +31,24 @@
     tr:nth-child(even) td{
       background-color: mix(white, color($theme-color, 50), 50%);
     }
+
+    .player {
+      font-weight: 600;
+    }
+    .region {
+      color: color($grey, 600);
+    }
+    .rival-icon {
+      width: 2rem;
+    }
+    .wins {
+      color: color($green);
+    }
+    .losses {
+      color: color($red);
+    }
+    .ratings {
+      font-weight: 600;
+    }
   }
 }

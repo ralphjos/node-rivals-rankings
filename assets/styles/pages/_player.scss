@@ -27,6 +27,15 @@
     @include size(hero);
     @include margin-bottom(0.5);
     display: inline-block;
+    vertical-align: middle;
+  }
+
+  .rival-icon {
+    width: 2.5rem;
+    vertical-align: middle;
+    &:first-child {
+      margin-left: 0.5rem;
+    }
   }
 
   .info-row {    

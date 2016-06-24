@@ -2,7 +2,42 @@
 
   <div class="container">
       <h2 class="subtitle">Player Profile</h2>
-      <h1 class="title">{{ player.challongeUsername }}</h1>
+      <h1 class="title">
+              {{#gt (length player.alias) 0}}
+                {{player.alias}}
+              {{else}}
+                {{player.challongeUsername}} 
+              {{/gt}}
+
+
+              {{#inArray player.mains "Zetterburn"}}
+                <img class="rival-icon" src="/images/icon_zetterburn.png">
+              {{/inArray}}
+              {{#inArray player.mains "Forsburn"}}
+                <img class="rival-icon" src="/images/icon_forsburn.png">
+              {{/inArray}}
+              {{#inArray player.mains "Maypul"}}
+                <img class="rival-icon" src="/images/icon_maypul.png">
+              {{/inArray}}
+              {{#inArray player.mains "Kragg"}}
+                <img class="rival-icon" src="/images/icon_kragg.png">
+              {{/inArray}}
+              {{#inArray player.mains "Kraig"}}
+                <img class="rival-icon" src="/images/icon_kraig.png">
+              {{/inArray}}
+              {{#inArray player.mains "Wrastor"}}
+                <img class="rival-icon" src="/images/icon_wrastor.png">
+              {{/inArray}}
+              {{#inArray player.mains "Absa"}}
+                <img class="rival-icon" src="/images/icon_absa.png">
+              {{/inArray}}
+              {{#inArray player.mains "Orcane"}}
+                <img class="rival-icon" src="/images/icon_orcane.png">
+              {{/inArray}}
+              {{#inArray player.mains "Etalus"}}
+                <img class="rival-icon" src="/images/icon_etalus.png">
+              {{/inArray}}
+      </h1>
     
       <table>
           <tr class="info-row first">
@@ -71,13 +106,33 @@
           <table class="match-table">
             <tr>
               <td class="winner {{#is this.winnerName ../player.challongeUsername}}active{{/is}}">
-                {{#isnt this.winnerName ../player.challongeUsername}}<a href="/players/{{this.winnerName}}/">{{this.winnerName}}{{else}}{{this.winnerName}}{{/isnt}}
+                {{#isnt this.winnerName ../player.challongeUsername}}
+                  <a href="/players/{{this.winnerName}}/">
+                  {{this.winnerName}}
+                  </a>
+                {{else}}
+                  {{#gt (length ../player.alias) 0}}
+                    {{../player.alias}}
+                  {{else}}
+                    {{../player.challongeUsername}} 
+                  {{/gt}}
+                {{/isnt}}
               </td>
               <td class="vs">
                 VS
               </td>
               <td class="loser {{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">
-                {{#isnt this.loserName ../player.challongeUsername}}<a href="/players/{{this.loserName}}/">{{this.loserName}}{{else}}{{this.loserName}}{{/isnt}}
+                {{#isnt this.loserName ../player.challongeUsername}}
+                  <a href="/players/{{this.loserName}}/">
+                  {{this.loserName}}
+                  </a>
+                {{else}}
+                  {{#gt (length ../player.alias) 0}}
+                    {{../player.alias}}
+                  {{else}}
+                    {{../player.challongeUsername}} 
+                  {{/gt}}
+                {{/isnt}}
               </td>
             </tr>
             <tr>
