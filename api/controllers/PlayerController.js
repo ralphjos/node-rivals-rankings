@@ -44,7 +44,6 @@ module.exports = {
                   });
 
                   player['allMatches'] = allMatches;
-                  log (player);
                   return res.view('playerInfo', {player: player});
               });
     }
