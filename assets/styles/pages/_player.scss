@@ -7,6 +7,9 @@
     border: 3px solid #333;
     background-color: color($grey, 50);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+    @media (max-width: $breakpoint-mobile) {
+      padding: 2rem;
+    }
   }
 
   
@@ -16,7 +19,7 @@
     @include margin-bottom(1);
     color: color($grey, 400);
     border-bottom: 2px solid color($grey, 300);
-    line-height: 1.25
+    line-height: 1.25;
   }
 
   .title {
@@ -26,17 +29,13 @@
     display: inline-block;
   }
 
-  table {
-    @include margin-bottom(2);
-  }
-
   .info-row {    
 
       td:nth-child(1) {
         border-top: 1px solid color($grey, 200);
         padding: 0.5rem;
         text-align: right;
-        width: 25%;
+        width: 12rem;
         padding-right: 1.5rem;
         color: color($grey, 500);
         text-transform: uppercase;
@@ -59,30 +58,40 @@
   .match-history {
     @include size(h1);
     @include title-font;
-    @include margin-bottom(1);
+    @include margin-top(1.5);
     color: color($grey, 400);
     border-bottom: 2px solid color($grey, 300);
     line-height: 1.25
   }
 
   .match {
-    box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.24), 0 1.5px 6px rgba(0, 0, 0, 0.12);
-    padding: 1rem;
-    @include margin-bottom(1);
+    padding-top: 2rem;
+    padding-bottom: 1.8rem;
     position: relative;
-    background-color: white;
-    
+    border-bottom: 1px solid color($grey, 300);
+    &:last-child {
+      border-bottom: none;
+    }
+        .info {
+          display: inline-block;
+          width: 14rem;
+          vertical-align: middle;
+          
+            @media (max-width: 55rem) {
+              display: block;
+            }
+        }
         .date {
           position: absolute;
-          top: 1rem;
-          right: 1rem;
+          top: 1.75rem;
+          right: 0;
           @include size(small);
           font-style: italic;
           color: color($grey, 500);
         }
 
         .tournament {
-          @include size(h3);
+          @include size(h4);
           line-height: 1.2;
         }
 
@@ -92,48 +101,54 @@
         }
 
         .match-table {
-          width: 80%;
-          margin: auto;
-          @include margin-top(0.5);
-          @include margin-bottom(0.5);
+          width: auto;
+          display: inline-block;
+          vertical-align: middle;
+          
+            @media (max-width: 55rem) {
+              margin: auto;
+              width: 100%;
+              display: inline-table;
+              @include margin-top(0.5);
+            }
           
             .active {
               text-decoration: underline;
             }
             .winner {
-              width: 40%;
+              width: 8rem;
               text-align: right;
               color: color($green);
               @include title-font;
-              @include size(h3);
+              font-size: 1.74rem;
             }
             .vs {
-              width: 20%;
+              width: 4rem;
               text-align: center;
               @include title-font;
-              @include size(h3);
+              font-size: 1.74rem;
             }
             .loser {
-              width: 40%;
+              width: 8rem;
               text-align: left;
               color: color($red);
               @include title-font;
-              @include size(h3);
+              font-size: 1.74rem;
             }
             .winner-score {
-              width: 40%;
+              width: 8rem;
               text-align: right;
               color: color($green);
               @include size(p);
             }
             .score-dash {
-              width: 20%;
+              width: 4rem;
               text-align: center;
               @include size(p);
             }
 
             .loser-score {
-              width: 40%;
+              width: 8rem;
               text-align: left;
               color: color($red);
               @include size(p);
