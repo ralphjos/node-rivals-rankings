@@ -5,6 +5,8 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+var log = require('captains-log')();
+
 module.exports = {
 
     attributes: {
@@ -67,6 +69,14 @@ module.exports = {
             collection: 'ratingHistory',
             via: 'challongeUsername'
         }
+    },
+
+    beforeCreate: function (values, cb) {
+        if(values.hasOwnProperty('challongeUsername') && !values.hasOwnProperty('alias')) {
+            values.alias = values.challongeUsername;
+        }
+
+        cb();
     }
 };
 
