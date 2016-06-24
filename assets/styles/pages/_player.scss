@@ -2,8 +2,8 @@
 
 
   .container {
-    @include container(55rem);
-    padding: 4rem;
+    @include container(60rem);
+    padding: 3rem;
     border: 3px solid #333;
     background-color: color($grey, 50);
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
@@ -83,7 +83,7 @@
     }
         .info {
           display: inline-block;
-          width: 14rem;
+          width: 9rem;
           vertical-align: middle;
           
             @media (max-width: 55rem) {
@@ -124,8 +124,26 @@
             .active {
               text-decoration: underline;
             }
+
+            
+            .winner-rival-icon {
+              width: 2rem;
+              vertical-align: middle;
+            }
+
+            .loser-rival-icon {
+              width: 2rem;
+              vertical-align: middle;
+            }
+            .winner a, .winner span {
+              margin-left: 0.5rem;
+            }
+            .loser a, .loser span {
+              margin-right: 0.5rem;
+            }
+
             .winner {
-              width: 8rem;
+              width: 15rem;
               text-align: right;
               color: color($green);
               @include title-font;
@@ -138,14 +156,14 @@
               font-size: 1.74rem;
             }
             .loser {
-              width: 8rem;
+              width: 15rem;
               text-align: left;
               color: color($red);
               @include title-font;
               font-size: 1.74rem;
             }
             .winner-score {
-              width: 8rem;
+              width: 15rem;
               text-align: right;
               color: color($green);
               @include size(p);
@@ -157,7 +175,7 @@
             }
 
             .loser-score {
-              width: 8rem;
+              width: 15rem;
               text-align: left;
               color: color($red);
               @include size(p);

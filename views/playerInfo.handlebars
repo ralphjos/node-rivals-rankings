@@ -2,13 +2,7 @@
 
   <div class="container">
       <h2 class="subtitle">Player Profile</h2>
-      <h1 class="title">
-              {{#gt (length player.alias) 0}}
-                {{player.alias}}
-              {{else}}
-                {{player.challongeUsername}} 
-              {{/gt}}
-
+      <h1 class="title">{{player.alias}}
 
               {{#inArray player.mains "Zetterburn"}}
                 <img class="rival-icon" src="/images/icon_zetterburn.png">
@@ -37,6 +31,7 @@
               {{#inArray player.mains "Etalus"}}
                 <img class="rival-icon" src="/images/icon_etalus.png">
               {{/inArray}}
+              
       </h1>
     
       <table>
@@ -105,34 +100,83 @@
           </div>
           <table class="match-table">
             <tr>
-              <td class="winner {{#is this.winnerName ../player.challongeUsername}}active{{/is}}">
+              <td class="winner">
+
+              {{#inArray this.winnerMains "Zetterburn"}}
+                <img class="winner-rival-icon" src="/images/icon_zetterburn.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Forsburn"}}
+                <img class="winner-rival-icon" src="/images/icon_forsburn.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Maypul"}}
+                <img class="winner-rival-icon" src="/images/icon_maypul.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Kragg"}}
+                <img class="winner-rival-icon" src="/images/icon_kragg.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Kraig"}}
+                <img class="winner-rival-icon" src="/images/icon_kraig.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Wrastor"}}
+                <img class="winner-rival-icon" src="/images/icon_wrastor.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Absa"}}
+                <img class="winner-rival-icon" src="/images/icon_absa.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Orcane"}}
+                <img class="winner-rival-icon" src="/images/icon_orcane.png">
+              {{/inArray}}
+              {{#inArray this.winnerMains "Etalus"}}
+                <img class="winner-rival-icon" src="/images/icon_etalus.png">
+              {{/inArray}}
+
                 {{#isnt this.winnerName ../player.challongeUsername}}
-                  <a href="/players/{{this.winnerName}}/">
-                  {{this.winnerName}}
+                  <a href="/players/{{this.winnerName}}/" class="{{#is this.winnerName ../player.challongeUsername}}active{{/is}}">
+                    {{this.winnerAlias}} 
                   </a>
                 {{else}}
-                  {{#gt (length ../player.alias) 0}}
-                    {{../player.alias}}
-                  {{else}}
-                    {{../player.challongeUsername}} 
-                  {{/gt}}
+                    <span class="{{#is this.winnerName ../player.challongeUsername}}active{{/is}}">{{this.winnerAlias}}</span>
                 {{/isnt}}
               </td>
               <td class="vs">
                 VS
               </td>
-              <td class="loser {{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">
+              <td class="loser">
                 {{#isnt this.loserName ../player.challongeUsername}}
-                  <a href="/players/{{this.loserName}}/">
-                  {{this.loserName}}
+                  <a href="/players/{{this.loserName}}/" class="{{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">
+                    {{this.loserAlias}} 
                   </a>
                 {{else}}
-                  {{#gt (length ../player.alias) 0}}
-                    {{../player.alias}}
-                  {{else}}
-                    {{../player.challongeUsername}} 
-                  {{/gt}}
+                    <span class="{{#eq this.loserName ../player.challongeUsername}}active{{/eq}}">{{this.loserAlias}}</span>
                 {{/isnt}}
+
+                {{#inArray this.loserMains "Zetterburn"}}
+                  <img class="loser-rival-icon" src="/images/icon_zetterburn.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Forsburn"}}
+                  <img class="loser-rival-icon" src="/images/icon_forsburn.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Maypul"}}
+                  <img class="loser-rival-icon" src="/images/icon_maypul.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Kragg"}}
+                  <img class="loser-rival-icon" src="/images/icon_kragg.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Kraig"}}
+                  <img class="loser-rival-icon" src="/images/icon_kraig.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Wrastor"}}
+                  <img class="loser-rival-icon" src="/images/icon_wrastor.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Absa"}}
+                  <img class="loser-rival-icon" src="/images/icon_absa.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Orcane"}}
+                  <img class="loser-rival-icon" src="/images/icon_orcane.png">
+                {{/inArray}}
+                {{#inArray this.loserMains "Etalus"}}
+                  <img class="loser-rival-icon" src="/images/icon_etalus.png">
+                {{/inArray}}
               </td>
             </tr>
             <tr>

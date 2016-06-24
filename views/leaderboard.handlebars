@@ -21,12 +21,7 @@
         {{#each players}}
           <tr>
             <td class="rank">{{add @index 1}}</td>
-            <td class="player"><a href="/players/{{this.challongeUsername}}/">
-              {{#gt (length this.alias) 0}}
-                {{this.alias}}
-              {{else}}
-                {{this.challongeUsername}} 
-              {{/gt}}</a>
+            <td class="player"><a href="/players/{{this.challongeUsername}}/">{{this.alias}}</a>
             </td>
 
             {{#is ../region "national"}}
