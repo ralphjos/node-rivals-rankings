@@ -31,6 +31,18 @@ module.exports = {
         loserName: {
             model: 'player'
         },
+        winnerAlias: {
+            type: 'string'
+        },
+        loserAlias: {
+            type: 'string'
+        },
+        winnerMains: {
+            type: 'array'
+        },
+        loserMains: {
+            type: 'array'
+        },
         winnerScore: {
             type: 'integer'
         },

@@ -5,6 +5,7 @@
  */
 var log = require('captains-log')();
 var dict = require('dict');
+var Promise = require('bluebird');
 
 module.exports = function () {
 
@@ -304,9 +305,17 @@ module.exports = function () {
 			"PGHjbro": []
 	  });
 
-	  MAINS.forEach(function (value, key) {
-			Player.update({challongeUsername: key}, {mains: value}).then(function (records) {
+	  const updates = [];
 
-			});
+	  MAINS.forEach(function (value, key) {
+			updates.push({challongeUsername: key, mains: value});
+	  });
+
+	  return Promise.map(updates, function (updateEntry) {
+			return Player.update({challongeUsername: updateEntry.challongeUsername},
+				  {mains: updateEntry.mains})
+				  .then(function (records) {
+
+				  });
 	  });
 };

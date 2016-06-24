@@ -15,6 +15,7 @@ var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
 var runGlicko2 = require('./../tasks/runGlicko2.js');
 var setMains = require('./../tasks/setMains.js');
+var setMatchAliasesAndMains = require('./../tasks/setMatchAliasesAndMains.js');
 
 module.exports.bootstrap = function (cb) {
 
@@ -25,6 +26,7 @@ module.exports.bootstrap = function (cb) {
             }).then(function (tournamentInfos) {
                   return Promise.each(tournamentInfos, runGlicko2);
             }).then(setMains)
+            .then(setMatchAliasesAndMains)
             .then(function () {
                   log("Done fetching data!")
             });
