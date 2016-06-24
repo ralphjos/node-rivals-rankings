@@ -101,6 +101,7 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (singleParticipant) {
                                     var playerId = singleParticipant.participant.id;
                                     var playerName = singleParticipant.participant.challonge_username;
+                                    var alias = singleParticipant.participant.name;
                                     var finalRank = singleParticipant.participant.final_rank;
 
                                     playerIdToName[playerId] = playerName;
@@ -108,6 +109,7 @@ module.exports = function (tournamentID) {
                                     return {
                                           playerId: playerId,
                                           playerName: playerName,
+                                          alias: alias,
                                           region: determineRegion(singleTournament.tournament.url),
                                           finalRank: finalRank
                                     };
@@ -116,6 +118,7 @@ module.exports = function (tournamentID) {
                               return Promise.map(participants, function (participant) {
                                     if (participant.finalRank) {
                                           var playerName = participant.playerName;
+                                          var alias = participant.alias;
                                           var regionName = participant.region;
                                           playerNames.add(playerName);
                                           Player.findOne({challongeUsername: playerName}).then(function (record) {
@@ -127,12 +130,22 @@ module.exports = function (tournamentID) {
 
                                                       });
                                                 } else {
+                                                      var updateCriteria = {};
+                                                      var shouldUpdate = false;
                                                       if (regionName != "national" && record.region != regionName) {
+                                                            updateCriteria['region'] = regionName;
+                                                            shouldUpdate = true;
+                                                      }
+
+                                                      if (alias && record.alias != alias) {
+                                                            updateCriteria['alias'] = alias;
+                                                            shouldUpdate = true;
+                                                      }
+
+                                                      if (shouldUpdate) {
                                                             Player.update({
                                                                   challongeUsername: playerName
-                                                            }, {
-                                                                  region: regionName
-                                                            }).then(function (player) {
+                                                            }, updateCriteria).then(function (player) {
 
                                                             });
                                                       }

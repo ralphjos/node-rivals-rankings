@@ -12,6 +12,9 @@ module.exports = {
             type: 'string',
             primaryKey: true
         },
+        alias: {
+            type: 'string'
+        },
         mains: {
             type: 'array',
             defaultsTo: []
