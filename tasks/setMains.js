@@ -17,11 +17,14 @@ module.exports = function () {
 	  const ORCANE = "Orcane";
 	  const ETALUS = "Etalus";
 
+	  const KRAIG = "Kraig";
+
 	  const MAINS = dict({
 			"ralphjos": [ORCANE],
 			"LightTheWaiter": [ABSA],
 			"RiskyCB": [ETALUS],
 			"FullStream": [WRASTOR],
+			"AZCards": [KRAGG],
 			"TheFailWhale": [KRAGG],
 			"gracefulknight": [ABSA],
 			"Vector5": [WRASTOR],
@@ -38,7 +41,7 @@ module.exports = function () {
 			"TheDuoDesign": [MAYPUL],
 			"Kisuno": [FORSBURN],
 			"Cupz": [ZETTERBURN],
-			"KZClimb": [KRAGG, ETALUS],
+			"KZClimb": [KRAIG, ETALUS],
 			"Sino5": [ZETTERBURN],
 			"Foxboy3525": [ZETTERBURN],
 			"Edobo": [ABSA],
