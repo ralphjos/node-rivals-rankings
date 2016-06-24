@@ -7,7 +7,10 @@
         <tr class="table-head-row">
           <td>Rank</td>
           <td>Name</td>
-          <td>Characters</td>
+          {{#is region "national"}}
+            <td>Region</td>
+          {{/is}}
+          <td>Rivals</td>
           <td>Wins</td>
           <td>Losses</td>
           <td>Win Percent</td>
@@ -19,6 +22,13 @@
           <tr>
             <td>{{add @index 1}}</td>
             <td><a href="/players/{{this.challongeUsername}}/">{{this.challongeUsername}}</a></td>
+            {{#is ../region "national"}}
+              {{#is this.region "national"}}
+                <td>Unknown</td>
+              {{else}}
+                <td>{{capitalize this.region}}</td>
+              {{/is}}
+            {{/is}}
             <td>TBD</td>
             <td>{{this.matchWinsCount}}</td>
             <td>{{this.matchLossesCount}}</td>
