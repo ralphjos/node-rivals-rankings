@@ -7,6 +7,7 @@
   "dependencies": {
     "bluebird": "^3.4.0",
     "captains-log": "^0.11.11",
+    "dict": "^1.4.0",
     "ejs": "2.3.4",
     "glicko2": "^0.8.4",
     "grunt": "0.4.5",

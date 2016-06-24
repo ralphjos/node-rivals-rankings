@@ -14,6 +14,7 @@ var setRegions = require('./../tasks/setRegions.js');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
 var runGlicko2 = require('./../tasks/runGlicko2.js');
+var setMains = require('./../tasks/setMains.js');
 
 module.exports.bootstrap = function (cb) {
 
@@ -23,7 +24,8 @@ module.exports.bootstrap = function (cb) {
                   return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1});
             }).then(function (tournamentInfos) {
                   return Promise.each(tournamentInfos, runGlicko2);
-            }).then(function () {
+            }).then(setMains)
+            .then(function () {
                   log("Done fetching data!")
             });
       cb();

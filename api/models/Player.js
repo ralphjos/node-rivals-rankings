@@ -12,6 +12,10 @@ module.exports = {
             type: 'string',
             primaryKey: true
         },
+        mains: {
+            type: 'array',
+            defaultsTo: []
+        },
         ratingMu: {
             type: 'float',
             defaultsTo: 1500
