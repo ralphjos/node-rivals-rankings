@@ -22,7 +22,7 @@ module.exports.bootstrap = function (cb) {
       setRegions()
             .then(fetchTournamentData)
             .then(function (tournamentIDs) {
-                  return Promise.map(tournamentIDs, fetchMatches, {concurrency: 1});
+                  return Promise.mapSeries(tournamentIDs, fetchMatches);
             }).then(function (tournamentInfos) {
                   return Promise.each(tournamentInfos, runGlicko2);
             }).then(setMains)
