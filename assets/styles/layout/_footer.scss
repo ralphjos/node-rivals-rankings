@@ -1,5 +1,4 @@
 .global-footer {
-  @include margin-top(2);
   background-color: color($grey, 200);
   border-top: 1px solid color($grey, 300);
   padding: $whitespace / 1.5;

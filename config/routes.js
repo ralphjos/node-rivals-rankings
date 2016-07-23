@@ -33,7 +33,8 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': {
-    view: 'homepage'
+    controller: 'MainController',
+    action: 'main'
   },
 
   '/rankings/:region': {
@@ -44,7 +45,11 @@ module.exports.routes = {
   '/players/:name': {
     controller: 'PlayerController',
     action: 'getPlayer'
-  }
+  },
+
+  '/about': {
+    view: 'homepage'
+  },
 
   /***************************************************************************
   *                                                                          *

@@ -24,7 +24,7 @@ module.exports = function () {
       const apiKey = sails.config.challonge.key;
       const state = 'ended';
       const subdomain = 'narivals';
-      const createdAfter = '2016-02-01';
+      const createdAfter = '2016-07-01';
 
       return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +
             '&created_after=' + createdAfter +

@@ -19,24 +19,46 @@
     <body>
 
 
+        <!-- Top Bar Code taken from RivalsOfAether.com -->
+        <div id="top_bar">
+            <div class="top_bar_content_wrap">
 
+                <div class="top_bar_content no_select">
+                    <div id="top_bar_menu_btn" onclick="menuOpen()">
+                        <div id="top_bar_menu_btn_img"></div>
+                    </div>
 
-        <nav id="global-nav--mobile">
-            <ul>
-              <li class="logo"><a href="/"><img src="/images/logo.png"></li></a>
-              <li class="link" id="global-nav--toggle"><a href="#">Test</a></li>
-            </ul>
-        </nav>
+                    <script>
+                        function menuOpen()
+                        {
+                            if(document.getElementById("top_bar").className == ""){
+                                document.getElementById("top_bar").className = "top_bar_open";
+                                document.getElementById("top_bar_menu_btn_img").className = "top_bar_menu_btn_img_open";
+                            }else{
+                                document.getElementById("top_bar").className = "";
+                                document.getElementById("top_bar_menu_btn_img").className = "";
+                            }
+                        }
+                    </script>
 
-        <nav class="global-nav">
-            <ul>
-              <li class="logo"><a href="/"><img src="/images/logo.png"></li></a>
-              <li class="link"><a href="/rankings/national/">National</a></li>
-              <li class="link"><a href="/rankings/western/">Western</a></li>
-              <li class="link"><a href="/rankings/central/">Central</a></li>
-              <li class="link"><a href="/rankings/eastern/">Eastern</a></li>
-            </ul>
-        </nav>
+                    <span class="top_bar_logo_wrap"><a class="top_bar_logo" href="http://www.rivalsofaether.com/"></a></span><a class="top_bar_link " href="http://aetherboards.com/news">NEWS</a><a class="top_bar_link " href="http://aetherboards.com/forums">FORUMS</a><a class="top_bar_link " href="http://www.rivalsofaether.com/characters/">CHARACTERS</a><a class="top_bar_link active" href="http://www.rivalsrankings.com">RANKINGS</a><a class="top_bar_link " href="http://www.rivalsofaether.com/presskit/">PRESSKIT</a>
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="top_bar2">
+          <div class="top_bar_content_wrap">
+            <a class="top_bar2_link active " href="http://rivalsrankings.com">LEARN</a>
+            <a class="top_bar2_link " href="http://rivalsrankings.com/#schedule">SCHEDULE</a>
+            <a class="top_bar2_link " href="https://www.twitch.tv/directory/game/Rivals%20of%20Aether">WATCH</a>
+            <a class="top_bar2_link " href="http://rivalsrankings.com/rankings/national/">LEADERBOARDS</a>
+            <a class="top_bar2_link " href="#">FAQS</a>
+          </div>
+        </div>
+
+        <div class="top_bar_padding"></div>
         
 
         {{{ body }}}

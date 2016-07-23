@@ -1,20 +1,184 @@
-<section class="home__introduction">
-    <div class="text">
-      <h1 class="title">Advanced Ranking System</h1>
-      <p class="desc">Rivals Rankings is a comprehensive ranking system for Rivals of Aether that features player profiles, match histories, and match statistics.</p>
+<section class="home__how-it-works">
+
+  <div class="container">
+    <div class="col first">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/d0hEcWSMcds" frameborder="0" allowfullscreen></iframe>
     </div>
+    <div class="col">
+      <h1 class="title">HOW IT WORKS</h1>
+      <p class="desc">RIVALS OF AETHER is an indie fighting game set in a world where warring civilizations summon the power of Fire, Water, Air, and Earth. Choose a Rival to bring into the battlefield and manipulate the powers of the elements.</p>
+      <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi, dolorum vel nulla ipsa velit odio.</p>
+      <a href="#"><button>Sign Up</button></a>
+    </div>
+  </div>
+
 </section>
-<section class="home__trueskill">
-    <div class="image">
-      <img src="/images/neural.jpg">
+
+
+
+
+
+<section class="home__schedule" id="schedule">
+  
+  <div class="container">
+
+    <h1 class="title">SCHEDULE</h1>
+
+    <div class="col first">
+      
+      <table>
+        <thead>
+          <tr class="table-head-row">
+            <td>Upcoming Weeklies</td>
+            <td>Date</td>
+          </tr>
+        <tbody>
+          <tr>
+            <td>NCS #17</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NAS #2</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NCS #17</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NAS #2</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NCS #17</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NAS #2</td>
+            <td>7/21/2016</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
-    <div class="text">
-      <h1 class="title">TrueSkill Ratings</h1>
-      <p class="desc">We use a modern implementation of Microsoft's TrueSkill algorithm, which provides an accurate approximation of player's skill level.</p>
+    <div class="col">
+
+
+       <table>
+        <thead>
+          <tr class="table-head-row">
+            <td>Majors</td>
+            <td>Date</td>
+          </tr>
+        <tbody>
+          <tr>
+            <td>NCS #17</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NAS #2</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NCS #17</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td>NAS #2</td>
+            <td>7/21/2016</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+
     </div>
+  </div>
+
+
 </section>
-<section class="home__action">
-    <h1 class="title">Explore The Rankings</h1>
-    <p class="desc">See how players rank in each region as well as in all of North America.</p>
-    <div class="button-container"><a href="/rankings/national/"><button>View Rankings</button></a></div>
+<section class="home__rankings">
+    
+    <div class="container">
+
+    <h1 class="title">Top Players</h1>
+  
+    <table>
+      <thead>
+        <tr class="table-head-row">
+          <td>Rank</td>
+          <td>Name</td>
+          {{#is region "national"}}
+            <td>Region</td>
+          {{/is}}
+          <td>Rivals</td>
+          <td>Wins</td>
+          <td>Losses</td>
+          <td>Win Percent</td>
+          <td>Rating</td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each players}}
+          <tr>
+            <td class="rank">{{add @index 1}}</td>
+            <td class="player"><a href="/players/{{this.challongeUsername}}/">{{this.alias}}</a>
+            </td>
+
+            {{#is ../region "national"}}
+              {{#is this.region "national"}}
+                <td class="region">Unknown</td>
+              {{else}}
+                <td class="region">{{capitalize this.region}}</td>
+              {{/is}}
+            {{/is}}
+            <td>
+              {{#inArray this.mains "Zetterburn"}}
+                <img class="rival-icon" src="/images/icon_zetterburn.png">
+              {{/inArray}}
+              {{#inArray this.mains "Forsburn"}}
+                <img class="rival-icon" src="/images/icon_forsburn.png">
+              {{/inArray}}
+              {{#inArray this.mains "Maypul"}}
+                <img class="rival-icon" src="/images/icon_maypul.png">
+              {{/inArray}}
+              {{#inArray this.mains "Kragg"}}
+                <img class="rival-icon" src="/images/icon_kragg.png">
+              {{/inArray}}
+              {{#inArray this.mains "Kraig"}}
+                <img class="rival-icon" src="/images/icon_kraig.png">
+              {{/inArray}}
+              {{#inArray this.mains "Wrastor"}}
+                <img class="rival-icon" src="/images/icon_wrastor.png">
+              {{/inArray}}
+              {{#inArray this.mains "Absa"}}
+                <img class="rival-icon" src="/images/icon_absa.png">
+              {{/inArray}}
+              {{#inArray this.mains "Orcane"}}
+                <img class="rival-icon" src="/images/icon_orcane.png">
+              {{/inArray}}
+              {{#inArray this.mains "Etalus"}}
+                <img class="rival-icon" src="/images/icon_etalus.png">
+              {{/inArray}}
+            </td>
+            <td class="wins">{{this.matchWinsCount}}</td>
+            <td class="losses">{{this.matchLossesCount}}</td>
+            <td class="percent">{{divide (round (multiply 10 this.winPercentage)) 10 }}%</td>
+            <td class="ratings">{{round this.conservativeRating}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    <div class="button-container"><a href="/rankings/national/"><button>View Full Rankings</button></a></div>
+    </div>
+
+
 </section>

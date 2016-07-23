@@ -1,68 +1,41 @@
-.global-nav {
-  width: 100%;
-  background-color: color($grey, 100);
-  
+// Code taken from RivalsOfAether.com
+#top_bar{top:0;background-color:#252525;z-index:1000;height:60px;position:fixed;line-height:normal;width:100%;box-shadow:0 3px 12px rgba(0,0,0,.23),0 3px 12px rgba(0,0,0,.16);font-size:16px;overflow:hidden;}.top_bar_content_wrap{margin:0 auto;max-width:1100px;}.top_bar_content{font-family:"Ubuntu","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;font-size:1.1em;margin:0 16px;display:inline-block;}.top_bar_content a:link,.top_bar_content a:visited,.top_bar_content a:link:focus,.top_bar_content a:visited:focus{color:#FFE900;}.top_bar_content a:link:hover,.top_bar_content a:visited:hover{color:#000;background-color:#fff;text-decoration:none;}.top_bar_content a:link:active,.top_bar_content a:visited:active{opacity:.5;}.top_bar_link{display:inline-block;margin-right:16px;margin-bottom:8px;transition:color .1s;height:60px;padding:0 1em;padding-top:20px;margin:0;}.top_bar_link_cur{color:#000!important;background-color:#fff!important;}.top_bar_logo_wrap a:link,.top_bar_logo_wrap a:visited,.top_bar_logo_wrap a:link:focus,.top_bar_logo_wrap a:visited:focus{display:inline-block;background-image:url('/images/logo.png');background-repeat:no-repeat;background-size:190px 60px;width:95px;height:60px;padding:0;margin-right:1em;margin-bottom:-24px;}.top_bar_logo_wrap a:link:hover,.top_bar_logo_wrap a:visited:hover{background-position:-95px 0;background-color:inherit;}.top_bar_padding{height:60px;}#top_bar_menu_btn{display:none;position:fixed;top:0;left:0;width:100px;height:60px;}#top_bar_menu_btn_img{position:absolute;top:20px;left:1em;width:14px;height:16px;background-image:url('/images/menu_icon.png?v=0');}@media (max-width: 860px) {#top_bar{text-align:center;}.top_bar_content{margin:0;display:block;}.top_bar_logo_wrap a:link,.top_bar_logo_wrap a:visited,.top_bar_logo_wrap a:link:focus,.top_bar_logo_wrap a:visited:focus{margin:0;}.top_bar_link{display:inline-block;width:100%;padding:0;padding-top:12px;padding-left:1em;text-align:left;height:45px;}#top_bar_menu_btn{display:block;}.top_bar_open{height:100%!important;}.top_bar_menu_btn_img_open{background-position:-14px 0;}}
 
-      ul {
-        padding-left: 1rem;
-        padding-bottom: 1.25rem;
-        padding-top: 1.25rem;
-        list-style: none;
-      }
-
-
-          .logo img {
-            height: 3rem;
-            vertical-align: middle;
-            position: relative;
-            bottom: 0.25rem;
-          }
-
-          li {
-            display: inline-block;
-            padding-right: 1.5rem;
-            vertical-align: middle;
-          }
-
-          .link a {
-            @include size(h4);
-            font-weight: 100;
-            //position: relative;
-            //top: 0.25rem;
-          }
-
-
+.top_bar_content .active {
+  color: #252525!important;
+  background: #fff;
 }
 
-#global-nav--mobile {
+.top_bar2{
+  top: 60px;
+  background-color: #575757;
+  z-index: 1001;
+  height: 45px;
+  position: fixed;
+  line-height: normal;
   width: 100%;
-  background-color: color($grey, 100);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.top_bar2_link {
+  font-weight: 800;
+  color: white;
+  display: inline-block;
+  margin-right: 16px;
+  margin-bottom: 8px;
+  transition: color .1s;
+  height: 45px;
+  padding: 0 1em;
+  padding-top: 13px;
+  margin: 0;
   
+  &:first-child {
+    padding-left: 90px;
+  }
+}
 
-      ul {
-        padding-left: 0.25rem;
-        padding-bottom: 1.25rem;
-        padding-top: 1.25rem;
-        list-style: none;
-      }
-
-
-          .logo img {
-            height: 2.3rem;
-            vertical-align: middle;
-          }
-
-          li {
-            display: inline-block;
-            padding-right: 1.5rem;
-            vertical-align: middle;
-          }
-
-          .link a {
-            @include size(h4);
-            font-weight: 100;
-            //position: relative;
-            //top: 0.25rem;
-          }
-
+.top_bar_padding {
+  height: 105px;
 }
