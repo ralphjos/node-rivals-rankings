@@ -50,6 +50,11 @@ module.exports.routes = {
   '/about': {
     view: 'homepage'
   },
+  
+  '/autoseed/:tournament': {
+    controller: 'TournamentController',
+    action: 'autoseed'
+  }
 
   /***************************************************************************
   *                                                                          *
