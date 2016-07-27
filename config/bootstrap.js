@@ -11,6 +11,7 @@
 var log = require('captains-log')();
 var Promise = require('bluebird');
 var setRegions = require('./../tasks/setRegions.js');
+var fetchUpcomingTournaments = require('./../tasks/fetchUpcomingTournaments');
 var fetchTournamentData = require('./../tasks/fetchTournamentData.js');
 var fetchMatches = require('./../tasks/fetchMatches.js');
 var runGlicko2 = require('./../tasks/runGlicko2.js');

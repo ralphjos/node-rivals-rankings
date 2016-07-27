@@ -4,7 +4,7 @@
 var log = require('captains-log')();
 var fetch = require('node-fetch');
 
-const WHITE_LIST = ["west", "wcs", "central", "ccs", "east", "ecs", "getgood", "national", "ncs"];
+const WHITE_LIST = ["west", "wcs", "central", "ccs", "east", "ecs", "getgood", "national", "ncs", "nas", "amateur"];
 
 function whiteListed(tournamentUrl) {
       tournamentUrl = tournamentUrl.toLowerCase();
