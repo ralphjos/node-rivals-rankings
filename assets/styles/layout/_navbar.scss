@@ -30,12 +30,12 @@
   padding: 0 1em;
   padding-top: 13px;
   margin: 0;
-  
-  &:first-child {
-    padding-left: 90px;
-  }
 }
 
 .top_bar_padding {
   height: 105px;
+}
+
+.first-nav {
+  padding-left: 90px;
 }

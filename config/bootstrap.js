@@ -28,6 +28,7 @@ module.exports.bootstrap = function (cb) {
                   return Promise.each(tournamentInfos, runGlicko2);
             }).then(setMains)
             .then(setMatchAliasesAndMains)
+            .then(fetchUpcomingTournaments)
             .then(function () {
                   log("Done fetching data!")
             });

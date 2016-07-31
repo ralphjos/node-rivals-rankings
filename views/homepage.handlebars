@@ -26,7 +26,7 @@
 
     <div class="col first">
       
-      <table>
+     <table>
         <thead>
           <tr class="table-head-row">
             <td>Upcoming Weeklies</td>
@@ -34,28 +34,24 @@
           </tr>
         <tbody>
           <tr>
-            <td>NCS #17</td>
-            <td>7/21/2016</td>
+            <td>{{#gte upcomingTournaments.length 1}}<a href="{{upcomingTournaments.0.url}}">{{upcomingTournaments.0.tournamentName}}</a>{{/gte}}</td>
+            <td>{{#gte upcomingTournaments.length 1}}{{moment upcomingTournaments.0.date format="MMMM DD"}}{{/gte}}</td>
           </tr>
           <tr>
-            <td>NAS #2</td>
-            <td>7/21/2016</td>
+            <td>{{#gte upcomingTournaments.length 2}}<a href="{{upcomingTournaments.1.url}}">{{upcomingTournaments.1.tournamentName}}</a>{{/gte}}</td>
+            <td>{{#gte upcomingTournaments.length 2}}{{moment upcomingTournaments.1.date format="MMMM DD"}}{{/gte}}</td>
+          </tr>
+         <tr>
+            <td>{{#gte upcomingTournaments.length 3}}<a href="{{upcomingTournaments.2.url}}">{{upcomingTournaments.2.tournamentName}}</a>{{/gte}}</td>
+            <td>{{#gte upcomingTournaments.length 3}}{{moment upcomingTournaments.2.date format="MMMM DD"}}{{/gte}}</td>
           </tr>
           <tr>
-            <td>NCS #17</td>
-            <td>7/21/2016</td>
+            <td>{{#gte upcomingTournaments.length 4}}<a href="{{upcomingTournaments.3.url}}">{{upcomingTournaments.3.tournamentName}}</a>{{/gte}}</td>
+            <td>{{#gte upcomingTournaments.length 4}}{{moment upcomingTournaments.3.date format="MMMM DD"}}{{/gte}}</td>
           </tr>
           <tr>
-            <td>NAS #2</td>
-            <td>7/21/2016</td>
-          </tr>
-          <tr>
-            <td>NCS #17</td>
-            <td>7/21/2016</td>
-          </tr>
-          <tr>
-            <td>NAS #2</td>
-            <td>7/21/2016</td>
+            <td>{{#gte upcomingTournaments.length 5}}<a href="{{upcomingTournaments.4.url}}">{{upcomingTournaments.4.tournamentName}}</a>{{/gte}}</td>
+            <td>{{#gte upcomingTournaments.length 5}}{{moment upcomingTournaments.4.date format="MMMM DD"}}{{/gte}}</td>
           </tr>
         </tbody>
       </table>
@@ -72,24 +68,20 @@
           </tr>
         <tbody>
           <tr>
-            <td>NCS #17</td>
-            <td>7/21/2016</td>
+            <td>Super Smash Con</td>
+            <td>August 11 - 14</td>
           </tr>
           <tr>
-            <td>NAS #2</td>
-            <td>7/21/2016</td>
+            <td>PAX West</td>
+            <td>September 2 - 5</td>
           </tr>
           <tr>
-            <td>NCS #17</td>
-            <td>7/21/2016</td>
+            <td>Twitchcon</td>
+            <td>September 30 - October 2</td>
           </tr>
           <tr>
-            <td>NAS #2</td>
-            <td>7/21/2016</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
+            <td>Smash the Record</td>
+            <td>November 11 - 13</td>
           </tr>
           <tr>
             <td></td>

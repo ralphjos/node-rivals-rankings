@@ -9,7 +9,7 @@
         <!--[if lt IE 9]>
           <script src="/js/polyfill/html5-shiv.js"></script>
         <![endif]-->
-        <script defer src="/js/responsive-nav.js"></script>
+        <script defer src="/js/dropdown.js"></script>
 
         <!--STYLES-->
         <link rel="stylesheet" href="/styles/importer.css">
@@ -49,14 +49,22 @@
 
         
         <div class="top_bar2">
-          <div class="top_bar_content_wrap">
-            <a class="top_bar2_link active " href="http://rivalsrankings.com">LEARN</a>
-            <a class="top_bar2_link " href="http://rivalsrankings.com/#schedule">SCHEDULE</a>
-            <a class="top_bar2_link " href="https://www.twitch.tv/directory/game/Rivals%20of%20Aether">WATCH</a>
-            <a class="top_bar2_link " href="http://rivalsrankings.com/rankings/national/">LEADERBOARDS</a>
-            <a class="top_bar2_link " href="#">FAQS</a>
+          <nav class="top_bar_content_wrap">
+            <ul>
+                <li class="first-nav"><a class="top_bar2_link active " href="http://rivalsrankings.com">LEARN</a></li>
+                <li><a class="top_bar2_link " href="http://rivalsrankings.com/#schedule">SCHEDULE</a></li>
+                <li><a class="top_bar2_link " href="https://www.twitch.tv/directory/game/Rivals%20of%20Aether">WATCH</a></li>
+                <li class="js-dropdown"><a class="top_bar2_link dropdown" href="http://rivalsrankings.com/rankings/national/">LEADERBOARDS</a>
+                    <ul class="dropdown-list fallback">
+                      <li><a href="#">Category One</a></li>
+                      <li><a href="#">Category Two</a></li>
+                      <li><a href="#">Category Three</a></li>
+                    </ul>
+                </li>
+                <li><a class="top_bar2_link " href="#">FAQS</a></li>
+            </ul>   
           </div>
-        </div>
+        </nav>
 
         <div class="top_bar_padding"></div>
         
