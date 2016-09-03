@@ -24,6 +24,8 @@ module.exports = function (tournamentID) {
                   return 'central';
             } else if (tournamentName.includes("east") || tournamentName.includes("ecs")) {
                   return 'eastern';
+            } else if (tournamentName.includes("sunday") || tournamentName.includes("untamed") || tournamentName.includes("saturday")) {
+                  return 'europe';
             } else {
                   return 'national';
             }

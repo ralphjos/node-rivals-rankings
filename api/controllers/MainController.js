@@ -8,9 +8,9 @@ var log = require('captains-log')();
 
 module.exports = {
 	  main: function (req, res) {
-			return Player.find().sort('conservativeRating DESC').limit(10).exec(function (err, players) {
+			return Player.find({ region: { '!': ["europe"] } })
+				  .sort('conservativeRating DESC').limit(10).exec(function (err, players) {
 				  return UpcomingTournament.find().sort('date ASC').exec(function (err, upcomingTournaments) {
-						log (upcomingTournaments);
 						return res.view('homepage', {
 							  players: players,
 							  upcomingTournaments: upcomingTournaments,

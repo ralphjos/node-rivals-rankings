@@ -3,8 +3,11 @@
  */
 var log = require('captains-log')();
 var fetch = require('node-fetch');
+var Promise = require('bluebird');
 
-const WHITE_LIST = ["west", "wcs", "central", "ccs", "east", "ecs", "getgood", "national", "ncs", "nas", "amateur"];
+const WHITE_LIST = ["west", "wcs", "central", "ccs", "east", "ecs", "getgood", "national", "ncs", "nas", "amateur",
+      "eu", "saturday", "sunday", "untamed"
+];
 
 function whiteListed(tournamentUrl) {
       tournamentUrl = tournamentUrl.toLowerCase();
@@ -23,15 +26,28 @@ module.exports = function () {
       // API Fetch Variable Setup
       const apiKey = sails.config.challonge.key;
       const state = 'ended';
-      const subdomain = 'narivals';
-      const createdAfter = '2016-07-20';
+      const NASubdomain = 'narivals';
+      const EUSubdomain = 'roaeurope';
+      const createdAfter = '2016-06-01';
 
       return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +
             '&created_after=' + createdAfter +
-            '&subdomain=' + subdomain +
+            '&subdomain=' + NASubdomain +
             '&state=' + state)
             .then(function (res) {
                   return res.json();
+            })
+            .then(function (NATournaments) {
+                  return fetch('https://api.challonge.com/v1/tournaments.json?api_key=' + apiKey +
+                        '&created_after=' + createdAfter +
+                        '&subdomain=' + EUSubdomain +
+                        '&state=' + state)
+                        .then(function (res) {
+                              return res.json();
+                        })
+                        .then(function (EUTournaments) {
+                              return NATournaments.concat(EUTournaments);
+                        })
             })
             .then(function (allTournaments) {
                   var rankedTournaments = [];

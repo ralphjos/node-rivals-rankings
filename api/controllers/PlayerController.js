@@ -12,7 +12,8 @@ module.exports = {
         var region = req.param('region', 'national');
 
         if (region === 'national') {
-            return Player.find().sort('conservativeRating DESC').exec(function(err, players) {
+            return Player.find({ region: { '!': ["europe"] } })
+                  .sort('conservativeRating DESC').exec(function(err, players) {
                 return res.view('leaderboard', {
                    players: players,
                    region: region
